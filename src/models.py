@@ -7,11 +7,6 @@ from eralchemy2 import render_er
 
 Base = declarative_base()
 
-class Follower(Base):
-    __tablename__ = 'followe'
-    user_from_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
-    user_to_id = Column(Integer, ForeignKey('user.id'))
-
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
@@ -19,6 +14,13 @@ class User(Base):
     first_name = Column(String(250), nullable=False)
     last_name = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
+
+class Follower(Base):
+    __tablename__ = 'follower'
+    id = Column(Integer, primary_key=True)
+    user_from_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    user_to_id = Column(Integer, ForeignKey('user.id'))
+
     
 class Post(Base):
     __tablename__ = 'post'
